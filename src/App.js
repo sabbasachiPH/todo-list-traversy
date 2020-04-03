@@ -38,7 +38,8 @@ function App() {
   }, []);
   //Toggle the complete Status
   const markComplete = (id) => {
-    console.log("from App.js", uuid());
+    // console.log("from App.js", uuid());
+    console.log("from App.js", id);
     const toggleStatus = todos.map((todo) => {
       if (todo.id === id) {
         todo.completed = !todo.completed;
@@ -67,7 +68,10 @@ function App() {
     Axios.post("https://jsonplaceholder.typicode.com/todos", {
       title: title,
       completed: false,
-    }).then((res) => setTodos([...todos, res.data]));
+    }).then((res) => {
+      res.data.id = uuid();
+      setTodos([...todos, res.data]);
+    });
 
     // with out JSONplaceholder API
     // const newTodo = {
@@ -75,7 +79,7 @@ function App() {
     //   title: title,
     //   completed: false,
     // };
-    //    setTodos([...todos, newTodo]);
+    // setTodos([...todos, newTodo]);
   };
   return (
     <div className="App">
