@@ -64,10 +64,10 @@ function App() {
   //addTodo
   const addTodo = (title) => {
     console.log(title);
-    const newTodo = Axios.post("https://jsonplaceholder.typicode.com/todos", {
+    Axios.post("https://jsonplaceholder.typicode.com/todos", {
       title: title,
       completed: false,
-    }).then((res) => res.data);
+    }).then((res) => setTodos([...todos, res.data]));
 
     // with out JSONplaceholder API
     // const newTodo = {
@@ -75,7 +75,7 @@ function App() {
     //   title: title,
     //   completed: false,
     // };
-    setTodos([...todos, newTodo]);
+    //    setTodos([...todos, newTodo]);
   };
   return (
     <div className="App">
